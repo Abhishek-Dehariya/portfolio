@@ -8,40 +8,40 @@ const items = [
     company: "Terragi Proptech Private Limited",
     period: "2024 — Present",
     description:
-      "Developed user-friendly web applications utilizing React.js and Next.js, enhancing user engagement and satisfaction. Collaborated with cross-functional teams to define, design, and implement innovative features. Optimized applications for maximum speed and scalability, improving performance metrics and user experience.",
-    tags: ["React.js", "Next.js", "TypeScript", "Tailwind CSS", "AWS", "Azure"],
+      "Built B2B Real Estate Inventory Platform connecting brokers and builders — managing 1000+ property listings with real-time search and filtering. Developed TypeScript component library reducing dev time ~30%. Integrated AWS S3 and Azure DevOps CI/CD pipelines. Shipped 3 major feature releases in 9 months.",
+    tags: ["React.js", "Next.js", "TypeScript", "Tailwind CSS", "AWS", "Azure", "PostgreSQL"],
   },
   {
     role: "Frontend Developer Trainee",
     company: "Primathon Technology Ventures",
     period: "2023 — 2024",
     description:
-      "Assisted in the development and maintenance of web applications using HTML, CSS, and JavaScript. Gained hands-on experience with the React.js framework. Participated in code reviews and collaborated with mentors to improve coding skills.",
-    tags: ["React.js", "JavaScript", "HTML", "CSS"],
+      "Transitioned from 8-year solar career into software development. Built and maintained React.js web applications; completed production-level Next.js training. Participated in code reviews and agile sprints.",
+    tags: ["React.js", "Next.js", "JavaScript", "HTML", "CSS"],
   },
   {
     role: "Asset Management Engineer",
     company: "Fourth Partner Energy",
     period: "2020 — 2023",
     description:
-      "Managed the operation of solar plants to ensure optimal performance and reliability. Developed and maintained relationships with vendors. Oversaw asset management processes to maximize efficiency and minimize operational downtime.",
-    tags: ["Asset Management", "Solar Energy", "Client Management"],
+      "Managed 30 MW solar portfolio (rooftop + ground-mount) across MP and Rajasthan. Primary technical contact for 15+ enterprise clients. Monitored SCADA data daily — tracked PR curves, inverter faults, string-level underperformance. Built client MIS dashboards and performance reports.",
+    tags: ["Asset Management", "SCADA", "Solar Energy", "MIS Reporting", "Client Management"],
   },
   {
     role: "Engineer",
     company: "AMPLUS SOLAR",
     period: "2019 — 2020",
     description:
-      "Operated and maintained rooftop solar plants, ensuring optimal performance and efficiency. Managed asset inventory and conducted regular inspections to uphold safety and operational standards.",
-    tags: ["Renewable Energy", "Operations", "Maintenance"],
+      "Operated and maintained rooftop solar plants ensuring high uptime across multiple client sites in Gujarat. Managed asset inventory, conducted regular inspections, implemented maintenance protocols.",
+    tags: ["Renewable Energy", "O&M", "Rooftop Solar", "Gujarat"],
   },
   {
     role: "Engineer",
     company: "Ujaas Energy",
     period: "2016 — 2019",
     description:
-      "Managed operation and maintenance of solar plants for both rooftop and ground-mounted systems. Conducted regular inspections, troubleshooting, and coordinated preventive maintenance schedules. Analyzed performance data and generated reports.",
-    tags: ["Solar Plants", "O&M", "Performance Analysis"],
+      "Operated 29 MW ground-mount solar plant — one of MP's largest at the time. Full O&M lifecycle: preventive maintenance, fault diagnosis, inverter servicing, performance reporting. Maintained 98%+ plant availability over 3.5-year tenure.",
+    tags: ["Solar Plants", "O&M", "29 MW", "Performance Analysis", "Preventive Maintenance"],
   },
 ];
 
@@ -51,10 +51,10 @@ export function Experience() {
       id="experience"
       eyebrow="03 — Experience"
       title={<>My professional <span className="gradient-text">journey</span></>}
-      description="From engineering renewable energy systems to building real estate tech — every step has shaped how I think and build."
+      description="From 59 MW of solar operations to production web apps — every role has compounded into something rare."
     >
       <div className="relative">
-        <div className="absolute left-4 sm:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-accent to-transparent" />
+        <div className="absolute left-4 sm:left-1/2 top-0 bottom-0 w-px bg-linear-to-b from-primary via-accent to-transparent" />
         <div className="space-y-8 sm:space-y-12">
           {items.map((it, i) => {
             const isLeft = i % 2 === 0;

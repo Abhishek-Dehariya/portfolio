@@ -22,7 +22,7 @@ export function Hero() {
               className="inline-flex items-center gap-2 glass px-4 py-1.5 rounded-full text-xs text-muted-foreground mb-6"
             >
               <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              Available for new opportunities
+              Open to ClimateTech & SolarTech Roles
               <Sparkles className="size-3 text-primary" />
             </motion.div>
 
@@ -41,7 +41,7 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.25 }}
               className="mt-5 text-base sm:text-xl text-muted-foreground"
             >
-              <span className="font-mono text-sm text-primary">{"<"}Software Developer · React · Next.js · AWS{" />"}</span>
+              <span className="font-mono text-sm text-primary">{"<"}Full-Stack Developer · Solar & Energy Domain · React · Next.js{" />"}</span>
             </motion.p>
 
             <motion.p
@@ -50,7 +50,7 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.35 }}
               className="mt-4 max-w-xl mx-auto lg:mx-0 text-sm sm:text-lg text-muted-foreground leading-relaxed"
             >
-              1.5+ years building scalable real estate platforms with React.js, Next.js &amp; TypeScript — now expanding into AWS &amp; Azure cloud.
+              8+ years operating 59 MW of solar assets across India. 1.5 years shipping production web apps. Now building the software that renewable energy engineers actually need — because I&apos;ve lived those problems firsthand.
             </motion.p>
 
             <motion.div
@@ -97,7 +97,7 @@ export function Hero() {
               className="relative"
             >
               {/* Glow rings */}
-              <div className="absolute -inset-6 rounded-full bg-gradient-to-tr from-primary/40 via-accent/30 to-transparent blur-2xl opacity-80" />
+              <div className="absolute -inset-6 rounded-full bg-linear-to-tr from-primary/40 via-accent/30 to-transparent blur-2xl opacity-80" />
               <div className="absolute -inset-1 rounded-full gradient-primary opacity-90 blur-[2px]" />
 
               {/* Image frame */}
@@ -105,7 +105,7 @@ export function Hero() {
                 <div className="relative size-full rounded-full overflow-hidden glass">
                   <img
                     src={profileImg}
-                    alt="Abhishek Dehariya — Frontend Developer"
+                    alt="Abhishek Dehariya — Full-Stack Developer | Solar & Energy Expert"
                     className="size-full object-cover hover:scale-105 transition-transform duration-700"
                     loading="eager"
                   />
@@ -119,7 +119,7 @@ export function Hero() {
                 className="absolute -bottom-2 -left-2 sm:-left-6 glass rounded-2xl px-3 py-2 shadow-elegant"
               >
                 <div className="text-[10px] font-mono text-muted-foreground">Currently</div>
-                <div className="text-xs sm:text-sm font-semibold">Building UIs</div>
+                <div className="text-xs sm:text-sm font-semibold">Building Solar Dashboards</div>
               </motion.div>
               <motion.div
                 animate={{ y: [0, 8, 0] }}
@@ -143,7 +143,7 @@ export function Hero() {
         >
           <div className="flex flex-col items-center gap-2">
             <span>scroll</span>
-            <div className="w-[1px] h-10 bg-gradient-to-b from-primary to-transparent" />
+            <div className="w-[1px] h-10 bg-linear-to-b from-primary to-transparent" />
           </div>
         </motion.div>
       </div>

@@ -14,29 +14,41 @@ const projects = [
   {
     title: "B2B Real Estate Inventory Platform",
     description:
-      "A B2B Real Estate Inventory Platform for a leading Real Estate Brokerage Firm. Established direct connections between brokers and builders, streamlining inventory management and broker-builder interactions.",
-    tags: ["Next.js", "TypeScript", "Tailwind", "Redux", "AWS"],
+      "Production platform for real estate brokerage — broker-builder inventory management, lead tracking, real-time property search across 1000+ listings. Built end-to-end at Terragi PropTech.",
+    tags: ["Next.js", "TypeScript", "Tailwind", "Redux", "AWS", "PostgreSQL"],
     gradient: "from-blue-500/30 via-indigo-500/20 to-purple-500/30",
     initials: "RE",
-    duration: "570+ Days",
+    duration: "570+ Days in Production",
+    badge: "Live in Production (Code: NDA)",
+    liveUrl: null,
+    githubUrl: null,
+    domain: false,
   },
   {
-    title: "Movie Discovery App",
+    title: "Solar Plant Monitoring Dashboard",
     description:
-      "Browse, search and discover movies powered by a public API. Smooth animations, responsive layout, and clean UI built with React.js.",
-    tags: ["React", "JavaScript", "REST API", "CSS"],
-    gradient: "from-purple-500/30 via-pink-500/20 to-rose-500/30",
-    initials: "MV",
-    duration: null,
+      "Real-time plant health dashboard with PR curve tracking, inverter alerts, generation vs. forecast charts, and O&M ticket system. Built from an O&M engineer's perspective — showing KPIs that field engineers use daily.",
+    tags: ["Next.js", "TypeScript", "Recharts", "Node.js", "PostgreSQL"],
+    gradient: "from-emerald-500/30 via-teal-500/20 to-green-500/30",
+    initials: "☀",
+    duration: "In Development",
+    badge: "Solar Domain",
+    liveUrl: "https://solar-dashboard.abhishekdehariya.com",
+    githubUrl: "https://github.com/Abhishek-Dehariya/solar-dashboard",
+    domain: true,
   },
   {
-    title: "Responsive UI Clone",
+    title: "Rooftop Solar ROI Calculator",
     description:
-      "Pixel-perfect responsive clone of a modern marketing site, focused on layout precision, performance, and accessibility.",
-    tags: ["React", "Tailwind CSS", "Responsive Design"],
-    gradient: "from-cyan-500/30 via-sky-500/20 to-blue-500/30",
-    initials: "UI",
-    duration: null,
+      "Interactive calculator for rooftop solar investment. Inputs: roof area, city, DISCOM tariff, system cost. Outputs: payback period, 25-year savings, CO2 offset. Real DISCOM tariff data for 15 major Indian cities.",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS"],
+    gradient: "from-amber-500/30 via-orange-500/20 to-yellow-500/30",
+    initials: "⚡",
+    duration: "In Development",
+    badge: "Solar Domain",
+    liveUrl: "https://solar-roi.abhishekdehariya.com",
+    githubUrl: "https://github.com/Abhishek-Dehariya/solar-roi-calculator",
+    domain: true,
   },
 ];
 
@@ -59,25 +71,32 @@ export function Projects() {
             whileHover={{ y: -8 }}
             className="group glass rounded-3xl overflow-hidden shadow-elegant hover:border-primary/50 transition-all"
           >
-            <div className={`relative aspect-[4/3] bg-gradient-to-br ${p.gradient} overflow-hidden`}>
+            <div className={`relative aspect-[4/3] bg-linear-to-br ${p.gradient} overflow-hidden`}>
               <div className="absolute inset-0 grid-pattern opacity-30" />
               <div className="absolute inset-0 grid place-items-center">
                 <span className="font-display text-7xl font-bold text-white/40 group-hover:scale-110 group-hover:text-white/60 transition-all duration-500">
                   {p.initials}
                 </span>
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-card via-transparent to-transparent" />
             </div>
             <div className="p-6">
-              <div className="flex items-start justify-between gap-2">
+              <div className="flex items-start justify-between gap-2 flex-wrap">
                 <h3 className="font-display text-lg font-semibold group-hover:text-primary transition-colors">
                   {p.title}
                 </h3>
-                {p.duration && (
-                  <span className="shrink-0 text-[10px] font-mono text-muted-foreground bg-primary/10 border border-primary/20 px-2 py-0.5 rounded-full">
-                    {p.duration}
-                  </span>
-                )}
+                <div className="flex flex-col items-end gap-1 shrink-0">
+                  {p.duration && (
+                    <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full border ${p.domain ? "text-emerald-400 bg-emerald-500/10 border-emerald-500/30" : "text-muted-foreground bg-primary/10 border-primary/20"}`}>
+                      {p.duration}
+                    </span>
+                  )}
+                  {p.badge && (
+                    <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full border ${p.domain ? "text-emerald-400 bg-emerald-500/10 border-emerald-500/30" : "text-muted-foreground bg-muted/30 border-border/40"}`}>
+                      {p.badge}
+                    </span>
+                  )}
+                </div>
               </div>
               <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
                 {p.description}
@@ -93,18 +112,30 @@ export function Projects() {
                 ))}
               </div>
               <div className="mt-5 flex items-center gap-2">
-                <a
-                  href="#"
-                  className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-2 rounded-lg gradient-primary text-primary-foreground hover:opacity-90 transition-opacity"
-                >
-                  <ExternalLink className="size-3.5" /> Live
-                </a>
-                <a
-                  href="#"
-                  className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-2 rounded-lg glass hover:bg-foreground/5 transition-colors"
-                >
-                  <GithubIcon className="size-3.5" /> Code
-                </a>
+                {p.liveUrl ? (
+                  <a
+                    href={p.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-2 rounded-lg gradient-primary text-primary-foreground hover:opacity-90 transition-opacity"
+                  >
+                    <ExternalLink className="size-3.5" /> Live
+                  </a>
+                ) : (
+                  <span className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-2 rounded-lg bg-muted/30 text-muted-foreground border border-border/40 cursor-default">
+                    <ExternalLink className="size-3.5" /> {p.badge === "Live in Production (Code: NDA)" ? "NDA" : "Coming Soon"}
+                  </span>
+                )}
+                {p.githubUrl ? (
+                  <a
+                    href={p.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-2 rounded-lg glass hover:bg-foreground/5 transition-colors"
+                  >
+                    <GithubIcon className="size-3.5" /> Code
+                  </a>
+                ) : null}
               </div>
             </div>
           </motion.article>

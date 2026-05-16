@@ -3,10 +3,10 @@ import { Section } from "./Section";
 import { Briefcase, GraduationCap, Lightbulb, Rocket } from "lucide-react";
 
 const stats = [
-  { icon: Briefcase, label: "Years Experience", value: "1.5+" },
-  { icon: Rocket, label: "Projects Shipped", value: "10+" },
-  { icon: Lightbulb, label: "Tech Stacks", value: "15+" },
-  { icon: GraduationCap, label: "Background", value: "B.Tech" },
+  { icon: Briefcase, label: "Solar Assets Managed", value: "59 MW" },
+  { icon: Rocket, label: "Years in Energy Sector", value: "8+" },
+  { icon: Lightbulb, label: "Enterprise Clients", value: "15+" },
+  { icon: GraduationCap, label: "Electronics & Telecom, RGPV", value: "B.Tech" },
 ];
 
 export function About() {
@@ -16,7 +16,8 @@ export function About() {
       eyebrow="01 — About"
       title={
         <>
-          A developer who loves <span className="gradient-text">crafting interfaces</span>
+          Engineer who learned to code.{" "}
+          <span className="gradient-text">Developer who knows solar.</span>
         </>
       }
     >
@@ -29,22 +30,23 @@ export function About() {
           className="lg:col-span-3 glass rounded-3xl p-8 sm:p-10 shadow-elegant"
         >
           <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-            I'm a <span className="text-foreground font-medium">Software Developer</span> with 1.5+ years of hands-on
-            experience building modern web applications using{" "}
-            <span className="text-foreground font-medium">React.js</span>,{" "}
-            <span className="text-foreground font-medium">Next.js</span>, and{" "}
-            <span className="text-foreground font-medium">TypeScript</span>, focused on
-            building intuitive real estate solutions.
+            I&apos;m a <span className="text-foreground font-medium">Full-Stack Developer</span> with an unusual background:{" "}
+            <span className="text-foreground font-medium">8 years as a solar O&amp;M and asset management engineer</span>{" "}
+            before transitioning into software.
           </p>
           <p className="mt-5 text-base sm:text-lg text-muted-foreground leading-relaxed">
-            Originally trained as an Electronics &amp; Telecommunication Engineer (B.Tech, RGPV — 8.4 GPA),
-            I transitioned into software development — bringing a strong analytical
-            mindset and structured problem-solving to every product I build.
+            I&apos;ve monitored SCADA dashboards at 6 AM, written MIS reports for{" "}
+            <span className="text-foreground font-medium">15+ enterprise clients</span>, and managed{" "}
+            <span className="text-foreground font-medium">59 MW of solar assets</span> across MP and Rajasthan.
+            Now I build the software that engineers like me needed but didn&apos;t have.
           </p>
           <p className="mt-5 text-base sm:text-lg text-muted-foreground leading-relaxed">
-            Currently a <span className="gradient-text font-semibold">Software Developer 1 at Terragi Proptech Private Limited</span>,
-            building scalable B2B real estate platforms that connect brokers and
-            builders, shipping pixel-perfect, performant interfaces used by real customers.
+            Currently at <span className="gradient-text font-semibold">Terragi PropTech (Gurugram)</span>, building B2B
+            real estate platforms with React.js, Next.js, TypeScript.
+            Targeting ClimateTech and SolarTech roles where domain expertise and engineering skills compound.
+          </p>
+          <p className="mt-5 text-sm text-muted-foreground">
+            B.Tech Electronics &amp; Telecom — RGPV Bhopal (2021, 8.4 CGPA)
           </p>
         </motion.div>
 

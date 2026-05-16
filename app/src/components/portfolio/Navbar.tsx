@@ -33,7 +33,7 @@ export function Navbar() {
     <>
       <motion.div
         style={{ scaleX }}
-        className="fixed top-0 left-0 right-0 h-[2px] origin-left z-[60] gradient-primary"
+        className="fixed top-0 left-0 right-0 h-0.5 origin-left z-60 gradient-primary"
       />
       <motion.header
         initial={{ y: -40, opacity: 0 }}
@@ -70,7 +70,7 @@ export function Navbar() {
                   className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground rounded-lg transition-colors relative group"
                 >
                   {item.label}
-                  <span className="absolute bottom-1 left-1/2 -translate-x-1/2 h-[2px] w-0 group-hover:w-4 gradient-primary rounded-full transition-all" />
+                  <span className="absolute bottom-1 left-1/2 -translate-x-1/2 h-0.5 w-0 group-hover:w-4 gradient-primary rounded-full transition-all" />
                 </a>
               ))}
             </nav>
@@ -85,7 +85,8 @@ export function Navbar() {
               </button>
               <a
                 href="#contact"
-                className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium gradient-primary text-primary-foreground hover:opacity-90 transition-opacity"
+                className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-white hover:opacity-90 transition-opacity"
+              style={{ backgroundColor: '#0F6E56' }}
               >
                 Hire Me
               </a>

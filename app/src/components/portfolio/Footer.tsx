@@ -20,10 +20,13 @@ export function Footer() {
   return (
     <footer className="relative border-t border-border/60 mt-12">
       <div className="max-w-6xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="text-sm text-muted-foreground text-center sm:text-left">
-          Designed & Developed by{" "}
-          <span className="gradient-text font-semibold">Abhishek Dehariya</span>
-        </p>
+        <div className="text-center sm:text-left">
+          <p className="text-sm text-muted-foreground">
+            Designed & Developed by{" "}
+            <span className="gradient-text font-semibold">Abhishek Dehariya</span>
+          </p>
+          <p className="text-xs text-muted-foreground/60 mt-0.5 font-mono">Solar + Code = ClimateTech</p>
+        </div>
         <div className="flex items-center gap-4 text-muted-foreground">
           <a href="https://github.com/Abhishek-Dehariya" aria-label="GitHub" className="hover:text-primary transition-colors">
             <GithubIcon className="size-4" />
