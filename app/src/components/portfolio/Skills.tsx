@@ -40,7 +40,7 @@ export function Skills() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: gi * 0.1 }}
-            className={`rounded-3xl p-8 shadow-elegant ${g.highlight ? "bg-[#0F6E56]/15 border border-[#0F6E56]/50 dark:bg-[#0F6E56]/20 dark:border-[#0F6E56]/40" : "glass"}`}
+            className={`rounded-3xl p-8 shadow-elegant ${g.highlight ? "bg-[#0F6E56]/20 border border-[#0F6E56]/40" : "glass"}`}
           >
             <div className="flex items-center justify-between mb-6">
               <h3 className={`font-display text-xl font-semibold ${g.highlight ? "text-[#0F6E56] dark:text-emerald-400" : ""}`}>{g.title}</h3>
@@ -59,7 +59,7 @@ export function Skills() {
                   whileHover={{ y: -3 }}
                   className={`px-4 py-2 rounded-xl text-sm border cursor-default transition-colors ${
                     g.highlight
-                      ? "border-[#0F6E56]/50 bg-[#0F6E56]/10 text-[#0a5c47] dark:text-emerald-300 hover:bg-[#0F6E56]/20"
+                      ? "border-[#0F6E56]/50 bg-[#0F6E56]/10 text-emerald-300 light:text-[#0a5c47] hover:bg-[#0F6E56]/20"
                       : "border-border/60 bg-card/40 hover:border-primary/60 hover:bg-primary/10 hover:text-primary"
                   }`}
                 >
