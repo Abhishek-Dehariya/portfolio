@@ -87,12 +87,12 @@ export function Projects() {
                 </h3>
                 <div className="flex flex-col items-end gap-1 shrink-0">
                   {p.duration && (
-                    <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full border ${p.domain ? "text-emerald-400 bg-emerald-500/10 border-emerald-500/30" : "text-muted-foreground bg-primary/10 border-primary/20"}`}>
+                    <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full border ${p.domain ? "text-emerald-700 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/30" : "text-muted-foreground bg-primary/10 border-primary/20"}`}>
                       {p.duration}
                     </span>
                   )}
                   {p.badge && (
-                    <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full border ${p.domain ? "text-emerald-400 bg-emerald-500/10 border-emerald-500/30" : "text-muted-foreground bg-muted/30 border-border/40"}`}>
+                    <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full border ${p.domain ? "text-emerald-700 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/30" : "text-muted-foreground bg-muted/30 border-border/40"}`}>
                       {p.badge}
                     </span>
                   )}
