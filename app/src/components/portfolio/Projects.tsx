@@ -20,7 +20,7 @@ const projects = [
     initials: "RE",
     duration: "570+ Days in Production",
     badge: "Live in Production (Code: NDA)",
-    liveUrl: null,
+    liveUrl: "https://terragi.in/",
     githubUrl: null,
     domain: false,
   },
