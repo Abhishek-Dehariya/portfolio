@@ -18,7 +18,8 @@ function LinkedinIcon({ className }: { className?: string }) {
 
 export function Footer() {
   return (
-    <footer className="relative border-t border-border/60 mt-12">
+    <footer className="relative mt-12">
+      <div className="h-px gradient-primary opacity-25" />
       <div className="max-w-6xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="text-center sm:text-left">
           <p className="text-sm text-muted-foreground">

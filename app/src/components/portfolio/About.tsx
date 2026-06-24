@@ -50,7 +50,7 @@ export function About() {
           </p>
         </motion.div>
 
-        <div className="lg:col-span-2 grid grid-cols-2 gap-4">
+        <div className="lg:col-span-2 grid grid-cols-2 gap-4 items-stretch">
           {stats.map((s, i) => (
             <motion.div
               key={s.label}
@@ -58,11 +58,13 @@ export function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="glass rounded-2xl p-5 hover:border-primary/40 transition-colors group"
+              className="glass rounded-2xl p-5 hover:border-primary/40 transition-all group h-full flex flex-col"
             >
-              <s.icon className="size-5 text-primary mb-3 group-hover:scale-110 transition-transform" />
-              <div className="font-display text-3xl font-bold">{s.value}</div>
-              <div className="text-xs text-muted-foreground mt-1">{s.label}</div>
+              <div className="size-10 rounded-xl bg-primary/10 border border-primary/20 grid place-items-center mb-4 group-hover:bg-primary/20 transition-colors shrink-0">
+                <s.icon className="size-5 text-primary group-hover:scale-110 transition-transform" />
+              </div>
+              <div className="font-display text-3xl font-bold gradient-text">{s.value}</div>
+              <div className="text-xs text-muted-foreground mt-2 leading-relaxed">{s.label}</div>
             </motion.div>
           ))}
         </div>

@@ -101,7 +101,7 @@ export function Contact() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="lg:col-span-2 glass rounded-3xl p-8 shadow-elegant flex flex-col justify-between"
+          className="lg:col-span-2 glass rounded-3xl p-8 shadow-elegant flex flex-col"
         >
           <div>
             <h3 className="font-display text-2xl font-semibold">Reach out</h3>
@@ -116,10 +116,32 @@ export function Contact() {
             >
               {EMAIL}
             </button>
+
+            <div className="mt-6 flex items-center gap-2.5 px-3 py-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 w-fit">
+              <span className="size-2 rounded-full bg-emerald-400 light:bg-emerald-600 animate-pulse shrink-0" />
+              <span className="text-xs text-emerald-400 light:text-emerald-700 font-medium">
+                Available for new opportunities
+              </span>
+            </div>
+
+            <div className="mt-5 space-y-3">
+              <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                <span className="size-8 grid place-items-center rounded-lg bg-primary/10 border border-primary/20 shrink-0 text-base">📍</span>
+                <span>Gurugram, India &mdash; IST (UTC+5:30)</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                <span className="size-8 grid place-items-center rounded-lg bg-primary/10 border border-primary/20 shrink-0 text-base">⚡</span>
+                <span>Usually replies within 24 hours</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                <span className="size-8 grid place-items-center rounded-lg bg-primary/10 border border-primary/20 shrink-0 text-base">☀</span>
+                <span>Open to ClimateTech &amp; SolarTech roles</span>
+              </div>
+            </div>
           </div>
 
           {/* Social icons */}
-          <div className="mt-8 flex flex-wrap gap-2">
+          <div className="mt-auto pt-8 flex flex-wrap gap-2">
             {/* Mail — copies email */}
             <motion.button
               whileHover={{ y: -4, scale: 1.05 }}

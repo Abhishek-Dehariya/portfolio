@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { Moon, Sun, Menu, X } from "lucide-react";
@@ -18,6 +19,14 @@ export function Navbar() {
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
   useEffect(() => {
+    const saved = localStorage.getItem("theme");
+    if (saved === "light") {
+      document.documentElement.classList.add("light");
+      setLight(true);
+    }
+  }, []);
+
+  useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
     onScroll();
     window.addEventListener("scroll", onScroll);
@@ -25,8 +34,9 @@ export function Navbar() {
   }, []);
 
   const toggleTheme = () => {
-    document.documentElement.classList.toggle("light");
-    setLight((v) => !v);
+    const isLight = document.documentElement.classList.toggle("light");
+    setLight(isLight);
+    localStorage.setItem("theme", isLight ? "light" : "dark");
   };
 
   return (
@@ -49,8 +59,10 @@ export function Navbar() {
           }`}
         >
           <div
-            className={`flex items-center justify-between rounded-2xl px-4 sm:px-5 py-3 transition-all glass ${
-              scrolled ? "shadow-elegant" : ""
+            className={`flex items-center justify-between rounded-2xl px-4 sm:px-5 py-3 transition-all duration-300 backdrop-blur-md border border-border ${
+              scrolled
+                ? "bg-background/90 shadow-elegant"
+                : "bg-background/65"
             }`}
           >
             <a href="/" className="flex items-center gap-2 group">
@@ -79,21 +91,21 @@ export function Navbar() {
               <button
                 onClick={toggleTheme}
                 aria-label="Toggle theme"
-                className="size-9 rounded-lg glass grid place-items-center hover:scale-105 transition-transform"
+                className="size-9 rounded-lg bg-background/60 border border-border grid place-items-center hover:scale-105 transition-transform"
               >
                 {light ? <Moon className="size-4" /> : <Sun className="size-4" />}
               </button>
               <a
                 href="#contact"
                 className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-white hover:opacity-90 transition-opacity"
-              style={{ backgroundColor: '#0F6E56' }}
+                style={{ backgroundColor: "#0F6E56" }}
               >
                 Hire Me
               </a>
               <button
                 onClick={() => setOpen((v) => !v)}
                 aria-label="Menu"
-                className="md:hidden size-9 rounded-lg glass grid place-items-center"
+                className="md:hidden size-9 rounded-lg bg-background/60 border border-border grid place-items-center"
               >
                 {open ? <X className="size-4" /> : <Menu className="size-4" />}
               </button>
@@ -104,18 +116,28 @@ export function Navbar() {
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="md:hidden mt-2 glass rounded-2xl p-3 flex flex-col"
+              className="md:hidden mt-2 bg-background/95 backdrop-blur-md border border-border rounded-2xl p-3 flex flex-col shadow-elegant"
             >
               {navItems.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="px-4 py-3 text-sm text-muted-foreground hover:text-foreground rounded-lg"
+                  className="px-4 py-3 text-sm text-muted-foreground hover:text-foreground rounded-lg transition-colors"
                 >
                   {item.label}
                 </a>
               ))}
+              <div className="mt-2 pt-2 border-t border-border">
+                <a
+                  href="#contact"
+                  onClick={() => setOpen(false)}
+                  className="flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-sm font-medium text-white"
+                  style={{ backgroundColor: "#0F6E56" }}
+                >
+                  Hire Me
+                </a>
+              </div>
             </motion.div>
           )}
         </div>

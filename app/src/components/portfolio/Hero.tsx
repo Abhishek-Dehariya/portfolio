@@ -19,7 +19,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 glass px-4 py-1.5 rounded-full text-xs text-muted-foreground mb-6"
+              className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/25 px-4 py-1.5 rounded-full text-xs text-emerald-400 light:text-emerald-700 font-medium mb-6"
             >
               <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
               Open to ClimateTech & SolarTech Roles
@@ -119,7 +119,7 @@ export function Hero() {
                 className="absolute -bottom-2 -left-2 sm:-left-6 glass rounded-2xl px-3 py-2 shadow-elegant"
               >
                 <div className="text-[10px] font-mono text-muted-foreground">Currently</div>
-                <div className="text-xs sm:text-sm font-semibold">Building Solar Dashboards</div>
+                <div className="text-xs sm:text-sm font-semibold">Full-Stack Dev @ Terragi</div>
               </motion.div>
               <motion.div
                 animate={{ y: [0, 8, 0] }}

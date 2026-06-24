@@ -60,7 +60,7 @@ export function Projects() {
       title={<>Selected <span className="gradient-text">work</span></>}
       description="A few projects I've designed, built, and shipped."
     >
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
         {projects.map((p, i) => (
           <motion.article
             key={p.title}
@@ -69,9 +69,9 @@ export function Projects() {
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, delay: i * 0.1 }}
             whileHover={{ y: -8 }}
-            className="group glass rounded-3xl overflow-hidden shadow-elegant hover:border-primary/50 transition-all"
+            className="group glass rounded-3xl overflow-hidden shadow-elegant hover:border-primary/50 transition-all flex flex-col"
           >
-            <div className={`relative aspect-[4/3] bg-linear-to-br ${p.gradient} overflow-hidden`}>
+            <div className={`relative aspect-[4/3] bg-linear-to-br ${p.gradient} overflow-hidden shrink-0`}>
               <div className="absolute inset-0 grid-pattern opacity-30" />
               <div className="absolute inset-0 grid place-items-center">
                 <span className="font-display text-7xl font-bold text-white/40 group-hover:scale-110 group-hover:text-white/60 transition-all duration-500">
@@ -80,7 +80,7 @@ export function Projects() {
               </div>
               <div className="absolute inset-0 bg-linear-to-t from-card via-transparent to-transparent" />
             </div>
-            <div className="p-6">
+            <div className="p-6 flex flex-col flex-1">
               <div className="flex items-start justify-between gap-2 flex-wrap">
                 <h3 className="font-display text-lg font-semibold group-hover:text-primary transition-colors">
                   {p.title}
@@ -111,7 +111,7 @@ export function Projects() {
                   </span>
                 ))}
               </div>
-              <div className="mt-5 flex items-center gap-2">
+              <div className="mt-auto pt-5 flex items-center gap-2">
                 {p.liveUrl ? (
                   <a
                     href={p.liveUrl}
@@ -123,7 +123,7 @@ export function Projects() {
                   </a>
                 ) : (
                   <span className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-2 rounded-lg bg-muted/30 text-muted-foreground border border-border/40 cursor-default">
-                    <ExternalLink className="size-3.5" /> {p.badge === "Live in Production (Code: NDA)" ? "NDA" : "Coming Soon"}
+                    <ExternalLink className="size-3.5" /> Coming Soon
                   </span>
                 )}
                 {p.githubUrl ? (
@@ -135,7 +135,14 @@ export function Projects() {
                   >
                     <GithubIcon className="size-3.5" /> Code
                   </a>
-                ) : null}
+                ) : (
+                  <span
+                    title="Source code is under NDA"
+                    className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-2 rounded-lg bg-muted/30 text-muted-foreground border border-border/40 cursor-not-allowed opacity-60"
+                  >
+                    <GithubIcon className="size-3.5" /> NDA
+                  </span>
+                )}
               </div>
             </div>
           </motion.article>

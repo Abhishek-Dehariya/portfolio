@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Zap } from "lucide-react";
 import { Section } from "./Section";
 
 const groups = [
@@ -32,7 +33,7 @@ export function Skills() {
       title={<>The <span className="gradient-text">stack</span> I work with</>}
       description="Technologies, libraries, and tools I use to build production-ready web applications."
     >
-      <div className="grid md:grid-cols-2 xl:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 xl:grid-cols-2 gap-6 items-stretch">
         {groups.map((g, gi) => (
           <motion.div
             key={g.title}
@@ -40,11 +41,14 @@ export function Skills() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: gi * 0.1 }}
-            className={`rounded-3xl p-8 shadow-elegant ${g.highlight ? "bg-[#0F6E56]/20 border border-[#0F6E56]/40" : "glass"}`}
+            className={`rounded-3xl p-8 shadow-elegant h-full ${g.highlight ? "bg-[#0F6E56]/20 border border-[#0F6E56]/40" : "glass"}`}
           >
             <div className="flex items-center justify-between mb-6">
-              <h3 className={`font-display text-xl font-semibold ${g.highlight ? "text-[#0F6E56] dark:text-emerald-400" : ""}`}>{g.title}</h3>
-              <span className="font-mono text-xs text-muted-foreground">
+              <h3 className={`font-display text-xl font-semibold flex items-center gap-2 ${g.highlight ? "text-[#0F6E56] dark:text-emerald-400" : ""}`}>
+                {g.highlight && <Zap className="size-5 text-emerald-500 shrink-0" />}
+                {g.title}
+              </h3>
+              <span className="font-mono text-xs text-muted-foreground bg-muted/30 border border-border/40 px-2 py-0.5 rounded-full">
                 {String(g.items.length).padStart(2, "0")} skills
               </span>
             </div>

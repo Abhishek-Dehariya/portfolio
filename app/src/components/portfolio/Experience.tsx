@@ -77,8 +77,10 @@ export function Experience() {
                     className="glass rounded-2xl p-6 shadow-elegant hover:border-primary/40 transition-colors"
                   >
                     <div className="flex items-center justify-between gap-3 mb-2">
-                      <span className="font-mono text-xs text-primary">{it.period}</span>
-                      <Building2 className="size-4 text-muted-foreground" />
+                      <span className="font-mono text-xs text-primary bg-primary/10 border border-primary/20 px-2.5 py-1 rounded-full">
+                        {it.period}
+                      </span>
+                      <Building2 className="size-4 text-muted-foreground shrink-0" />
                     </div>
                     <h3 className="font-display text-xl font-semibold">{it.role}</h3>
                     <div className="text-sm text-muted-foreground mt-1">{it.company}</div>
