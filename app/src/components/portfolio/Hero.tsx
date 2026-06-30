@@ -8,8 +8,8 @@ export function Hero() {
       {/* Animated background */}
       <div className="absolute inset-0 gradient-hero" />
       <div className="absolute inset-0 grid-pattern opacity-40" />
-      <div className="absolute top-1/3 -left-32 size-[320px] sm:size-[420px] rounded-full bg-primary/30 blur-[120px] animate-blob" />
-      <div className="absolute bottom-1/4 -right-32 size-[320px] sm:size-[420px] rounded-full bg-accent/30 blur-[120px] animate-blob [animation-delay:-7s]" />
+      <div className="absolute top-1/3 -left-32 size-80 sm:size-105 rounded-full bg-primary/30 blur-[120px] animate-blob" />
+      <div className="absolute bottom-1/4 -right-32 size-80 sm:size-105 rounded-full bg-accent/30 blur-[120px] animate-blob [animation-delay:-7s]" />
 
       <div className="relative z-10 w-full max-w-6xl mx-auto px-5 sm:px-6">
         <div className="grid lg:grid-cols-[1.2fr_1fr] gap-10 lg:gap-14 items-center">
@@ -82,6 +82,25 @@ export function Hero() {
                 Contact
               </a>
             </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+              className="mt-8 pt-6 border-t border-border/30 flex flex-wrap items-center gap-x-8 gap-y-4 justify-center lg:justify-start"
+            >
+              {[
+                { value: "59 MW", label: "Solar Managed" },
+                { value: "8+", label: "Yrs in Energy" },
+                { value: "15+", label: "Enterprise Clients" },
+                { value: "1.5 yrs", label: "Dev Experience" },
+              ].map((s) => (
+                <div key={s.label} className="text-center lg:text-left">
+                  <div className="font-display text-xl font-bold gradient-text">{s.value}</div>
+                  <div className="text-[11px] text-muted-foreground font-mono mt-0.5">{s.label}</div>
+                </div>
+              ))}
+            </motion.div>
           </div>
 
           {/* Profile image */}
@@ -101,7 +120,7 @@ export function Hero() {
               <div className="absolute -inset-1 rounded-full gradient-primary opacity-90 blur-[2px]" />
 
               {/* Image frame */}
-              <div className="relative size-56 sm:size-72 lg:size-80 rounded-full p-[3px] gradient-primary shadow-glow">
+              <div className="relative size-56 sm:size-72 lg:size-80 rounded-full p-0.75 gradient-primary shadow-glow">
                 <div className="relative size-full rounded-full overflow-hidden glass">
                   <img
                     src={profileImg}
@@ -143,7 +162,7 @@ export function Hero() {
         >
           <div className="flex flex-col items-center gap-2">
             <span>scroll</span>
-            <div className="w-[1px] h-10 bg-linear-to-b from-primary to-transparent" />
+            <div className="w-px h-10 bg-linear-to-b from-primary to-transparent" />
           </div>
         </motion.div>
       </div>
