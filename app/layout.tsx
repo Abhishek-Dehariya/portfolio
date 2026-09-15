@@ -34,13 +34,13 @@ export const metadata: Metadata = {
     description:
       '8+ yrs solar operations (59 MW) + 1.5 yrs production dev. Building software that solves real renewable energy problems.',
     siteName: 'Abhishek Dehariya Portfolio',
-    images: [{ url: '/abhishek.jpeg', width: 800, height: 800, alt: 'Abhishek Dehariya' }],
+    images: [{ url: '/abhishek.png', width: 800, height: 800, alt: 'Abhishek Dehariya' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Abhishek Dehariya — Full-Stack Developer | Solar & Energy Expert',
     description: '8+ yrs solar operations (59 MW) + 1.5 yrs production dev. Building software that solves real renewable energy problems.',
-    images: ['/abhishek.jpeg'],
+    images: ['/abhishek.png'],
   },
   alternates: {
     canonical: BASE_URL,
@@ -57,7 +57,7 @@ const jsonLd = {
   '@type': 'Person',
   name: 'Abhishek Dehariya',
   url: BASE_URL,
-  image: `${BASE_URL}/abhishek.jpeg`,
+  image: `${BASE_URL}/abhishek.png`,
   jobTitle: 'Full-Stack Developer',
   worksFor: { '@type': 'Organization', name: 'Terragi Proptech Private Limited' },
   email: 'a.dehariya10@gmail.com',
