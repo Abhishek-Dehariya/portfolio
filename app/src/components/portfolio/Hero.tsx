@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Download, Mail, Sparkles } from "lucide-react";
-const profileImg = "/abhishek.jpeg";
+const profileImg = "/abhishek.png";
 
 export function Hero() {
   return (
