@@ -26,7 +26,9 @@ export function Footer() {
             Designed & Developed by{" "}
             <span className="gradient-text font-semibold">Abhishek Dehariya</span>
           </p>
-          <p className="text-xs text-muted-foreground/60 mt-0.5 font-mono">Solar + Code = ClimateTech</p>
+          <p className="text-xs text-muted-foreground/60 mt-0.5 font-mono">
+            Solar O&amp;M · Asset Management · Energy Software
+          </p>
         </div>
         <div className="flex items-center gap-4 text-muted-foreground">
           <a href="https://github.com/Abhishek-Dehariya" aria-label="GitHub" className="hover:text-primary transition-colors">

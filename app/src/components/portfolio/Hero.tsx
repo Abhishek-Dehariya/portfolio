@@ -1,169 +1,189 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Download, Mail, Sparkles } from "lucide-react";
+import {
+  ArrowRight,
+  ChevronDown,
+  Download,
+  Mail,
+  Sun,
+} from "lucide-react";
+import { ParticleWave } from "./ParticleWave";
+
 const profileImg = "/abhishek.png";
 
+const PRESETS = ["reference", "solar", "cyber"] as const;
+type WavePreset = (typeof PRESETS)[number];
+
 export function Hero() {
+  const [waveMode, setWaveMode] = useState<WavePreset>("reference");
+
+  // Randomize wave visual configuration on full page reload without consecutive repeats
+  useEffect(() => {
+    try {
+      const STORAGE_KEY = "ad_portfolio_wave_preset";
+      const lastPreset = sessionStorage.getItem(STORAGE_KEY) as WavePreset | null;
+      const candidates = PRESETS.filter((p) => p !== lastPreset);
+      const chosen = candidates[Math.floor(Math.random() * candidates.length)] || "reference";
+      sessionStorage.setItem(STORAGE_KEY, chosen);
+      setWaveMode(chosen);
+    } catch {
+      const chosen = PRESETS[Math.floor(Math.random() * PRESETS.length)];
+      setWaveMode(chosen);
+    }
+  }, []);
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-28 pb-16 sm:pt-32">
-      {/* Animated background */}
-      <div className="absolute inset-0 gradient-hero" />
-      <div className="absolute inset-0 grid-pattern opacity-40" />
-      <div className="absolute top-1/3 -left-32 size-80 sm:size-105 rounded-full bg-primary/30 blur-[120px] animate-blob" />
-      <div className="absolute bottom-1/4 -right-32 size-80 sm:size-105 rounded-full bg-accent/30 blur-[120px] animate-blob [animation-delay:-7s]" />
+    <section
+      id="home"
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-24 pb-12 sm:pt-28 select-none bg-background transition-colors duration-300"
+    >
+      {/* 3D WebGL / Canvas Particle Wave Floor */}
+      <ParticleWave themeColor={waveMode} className="opacity-95" />
 
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-5 sm:px-6">
-        <div className="grid lg:grid-cols-[1.2fr_1fr] gap-10 lg:gap-14 items-center">
-          {/* Text content */}
-          <div className="text-center lg:text-left order-2 lg:order-1">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/25 px-4 py-1.5 rounded-full text-xs text-emerald-400 light:text-emerald-700 font-medium mb-6"
-            >
-              <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              Open to ClimateTech & SolarTech Roles
-              <Sparkles className="size-3 text-primary" />
-            </motion.div>
+      {/* Atmospheric Radial Lighting */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_25%,rgba(244,63,94,0.08),transparent_60%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_90%,rgba(14,165,233,0.14),transparent_70%)]" />
 
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold tracking-tight leading-[1.05]"
-            >
-              Abhishek <span className="gradient-text">Dehariya</span>
-            </motion.h1>
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 flex flex-col items-center text-center my-auto">
+        {/* Availability Badge */}
+        <motion.div
+          initial={{ opacity: 0, y: -15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-500/10 border border-rose-500/25 text-rose-500 dark:text-rose-300 font-mono text-xs mb-4 shadow-[0_0_15px_rgba(244,63,94,0.15)]"
+        >
+          <span className="size-2 rounded-full bg-rose-500 animate-pulse shadow-[0_0_8px_#f43f5e]" />
+          <span>Available for Solar O&amp;M · Asset Management · Energy Software</span>
+          <Sun className="size-3.5 text-amber-500 dark:text-amber-400" />
+        </motion.div>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.25 }}
-              className="mt-5 text-base sm:text-xl text-muted-foreground"
-            >
-              <span className="font-mono text-sm text-primary">{"<"}Full-Stack Developer · Solar & Energy Domain · React · Next.js{" />"}</span>
-            </motion.p>
+        {/* Profile Photo: Scaled to 100-120px on desktop with repositioned badge */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.85 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="relative mb-4 group cursor-pointer"
+        >
+          {/* Subtle multi-gradient glow ring */}
+          <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-rose-500 via-sky-500 to-emerald-400 opacity-60 blur-md group-hover:opacity-100 transition-opacity duration-300 animate-pulse" />
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.35 }}
-              className="mt-4 max-w-xl mx-auto lg:mx-0 text-sm sm:text-lg text-muted-foreground leading-relaxed"
-            >
-              8+ years operating 59 MW of solar assets across India. 1.5 years shipping production web apps. Now building the software that renewable energy engineers actually need — because I&apos;ve lived those problems firsthand.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-3"
-            >
-              <a
-                href="#projects"
-                className="group inline-flex items-center gap-2 gradient-primary text-primary-foreground px-5 sm:px-6 py-3 rounded-xl font-medium shadow-glow hover:scale-[1.03] transition-transform text-sm sm:text-base"
-              >
-                View Projects
-                <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a
-                href="/resume.pdf"
-                download
-                className="inline-flex items-center gap-2 glass px-5 sm:px-6 py-3 rounded-xl font-medium hover:bg-foreground/5 transition-colors text-sm sm:text-base"
-              >
-                <Download className="size-4" />
-                Resume
-              </a>
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-2 px-5 sm:px-6 py-3 rounded-xl font-medium text-muted-foreground hover:text-foreground transition-colors text-sm sm:text-base"
-              >
-                <Mail className="size-4" />
-                Contact
-              </a>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.7 }}
-              className="mt-8 pt-6 border-t border-border/30 flex flex-wrap items-center gap-x-8 gap-y-4 justify-center lg:justify-start"
-            >
-              {[
-                { value: "59 MW", label: "Solar Managed" },
-                { value: "8+", label: "Yrs in Energy" },
-                { value: "15+", label: "Enterprise Clients" },
-                { value: "1.5 yrs", label: "Dev Experience" },
-              ].map((s) => (
-                <div key={s.label} className="text-center lg:text-left">
-                  <div className="font-display text-xl font-bold gradient-text">{s.value}</div>
-                  <div className="text-[11px] text-muted-foreground font-mono mt-0.5">{s.label}</div>
-                </div>
-              ))}
-            </motion.div>
+          {/* Circular Frame (115px on desktop, proportional on smaller viewports) */}
+          <div className="relative size-24 sm:size-28 md:size-[115px] rounded-full p-0.5 bg-gradient-to-b from-rose-500 to-sky-500 shadow-xl overflow-hidden">
+            <img
+              src={profileImg}
+              alt="Abhishek Dehariya"
+              width={120}
+              height={120}
+              loading="eager"
+              className="size-full object-cover object-center rounded-full group-hover:scale-105 transition-transform duration-300"
+            />
           </div>
 
-          {/* Profile image */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="order-1 lg:order-2 flex justify-center lg:justify-end"
+          {/* 59 MW Badge: Repositioned at bottom-right edge so it never covers the face */}
+          <div className="absolute -bottom-1 -right-2 bg-background/95 border border-rose-500/40 rounded-full px-2.5 py-0.5 text-[11px] font-mono text-rose-500 dark:text-rose-300 shadow-md z-10 whitespace-nowrap">
+            59 MW
+          </div>
+        </motion.div>
+
+        {/* Full Name on a Single Line across desktop and responsive scaling */}
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="font-display text-[clamp(1.75rem,5.2vw,4.5rem)] font-extrabold tracking-tight uppercase leading-tight sm:leading-none sm:whitespace-nowrap max-w-full text-center"
+        >
+          <span className="text-foreground drop-shadow-[0_2px_12px_rgba(255,255,255,0.25)] dark:drop-shadow-[0_2px_12px_rgba(255,255,255,0.25)]">
+            ABHISHEK
+          </span>{" "}
+          <span className="bg-gradient-to-r from-rose-500 via-red-500 to-rose-600 bg-clip-text text-transparent drop-shadow-[0_0_35px_rgba(244,63,94,0.6)]">
+            DEHARIYA
+          </span>
+        </motion.h1>
+
+        {/* Creative Subtitle */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.25 }}
+          className="mt-3 flex flex-wrap items-center justify-center gap-2 text-base sm:text-2xl font-light text-muted-foreground"
+        >
+          <span className="text-muted-foreground font-normal">Solar O&amp;M Lead</span>
+          <span className="text-rose-500 font-bold">&bull;</span>
+          <span className="text-foreground font-medium">Asset Technologist</span>
+          <span className="text-rose-500 font-bold">&bull;</span>
+          <span className="text-sky-600 dark:text-sky-400 font-mono text-sm sm:text-lg">Energy Software Dev</span>
+        </motion.div>
+
+        {/* Condensed Subtitle Description */}
+        <motion.p
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.35 }}
+          className="mt-3 max-w-xl text-xs sm:text-sm text-muted-foreground leading-relaxed font-sans"
+        >
+          8+ years managing <span className="text-foreground font-medium">59 MW</span> of utility &amp; commercial solar plants across MP, Rajasthan &amp; Gujarat — plus shipping production energy software with Next.js &amp; TypeScript.
+        </motion.p>
+
+        {/* Action Button Group */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.45 }}
+          className="mt-6 flex flex-wrap items-center justify-center gap-3.5"
+        >
+          {/* Signature Coral Glow Pill */}
+          <a
+            href="#about"
+            className="group relative inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-sm sm:text-base font-semibold text-white bg-gradient-to-r from-rose-500 to-red-600 shadow-[0_0_25px_rgba(244,63,94,0.65)] hover:shadow-[0_0_40px_rgba(244,63,94,0.9)] hover:scale-105 active:scale-95 transition-all duration-300 border border-rose-400/40 cursor-pointer"
           >
-            <motion.div
-              animate={{ y: [0, -12, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="relative"
-            >
-              {/* Glow rings */}
-              <div className="absolute -inset-6 rounded-full bg-linear-to-tr from-primary/40 via-accent/30 to-transparent blur-2xl opacity-80" />
-              <div className="absolute -inset-1 rounded-full gradient-primary opacity-90 blur-[2px]" />
+            <span>Know More</span>
+            <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
+          </a>
 
-              {/* Image frame */}
-              <div className="relative size-56 sm:size-72 lg:size-80 rounded-full p-0.75 gradient-primary shadow-glow">
-                <div className="relative size-full rounded-full overflow-hidden glass">
-                  <img
-                    src={profileImg}
-                    alt="Abhishek Dehariya — Full-Stack Developer | Solar & Energy Expert"
-                    className="size-full object-cover hover:scale-105 transition-transform duration-700"
-                    loading="eager"
-                  />
-                </div>
-              </div>
+          {/* Secondary Solar Button */}
+          <a
+            href="#solar-experience"
+            className="glass inline-flex items-center gap-2 px-5 py-3.5 rounded-full text-sm font-medium text-foreground hover:bg-foreground/5 hover:border-primary/40 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
+          >
+            <span>59 MW Solar Career</span>
+          </a>
 
-              {/* Floating badges */}
-              <motion.div
-                animate={{ y: [0, -6, 0] }}
-                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -bottom-2 -left-2 sm:-left-6 glass rounded-2xl px-3 py-2 shadow-elegant"
-              >
-                <div className="text-[10px] font-mono text-muted-foreground">Currently</div>
-                <div className="text-xs sm:text-sm font-semibold">Full-Stack Dev @ Terragi</div>
-              </motion.div>
-              <motion.div
-                animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute -top-2 -right-2 sm:-right-4 glass rounded-2xl px-3 py-2 shadow-elegant"
-              >
-                <div className="flex items-center gap-1.5">
-                  <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="text-xs sm:text-sm font-semibold">Open to work</span>
-                </div>
-              </motion.div>
-            </motion.div>
-          </motion.div>
-        </div>
+          {/* Resume Download */}
+          <a
+            href="/resume.pdf"
+            download
+            className="glass inline-flex items-center gap-1.5 px-4 py-3.5 rounded-full text-sm font-medium text-muted-foreground hover:text-foreground border-border hover:border-foreground/20 transition-all duration-200 cursor-pointer"
+          >
+            <Download className="size-3.5 text-rose-500 dark:text-rose-400" />
+            <span>Resume</span>
+          </a>
 
+          {/* Contact */}
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-1.5 px-4 py-3.5 rounded-full text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+          >
+            <Mail className="size-3.5 text-sky-500 dark:text-sky-400" />
+            <span>Contact</span>
+          </a>
+        </motion.div>
+
+        {/* Downward Indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 1 }}
-          className="hidden sm:flex absolute left-1/2 -translate-x-1/2 bottom-4 text-xs text-muted-foreground font-mono"
+          transition={{ delay: 0.8, duration: 0.8 }}
+          className="mt-8 flex flex-col items-center gap-1 text-[11px] text-muted-foreground font-mono"
         >
-          <div className="flex flex-col items-center gap-2">
-            <span>scroll</span>
-            <div className="w-px h-10 bg-linear-to-b from-primary to-transparent" />
-          </div>
+          <span>scroll to explore</span>
+          <motion.div
+            animate={{ y: [0, 5, 0] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <ChevronDown className="size-3.5 text-rose-500 dark:text-rose-400" />
+          </motion.div>
         </motion.div>
       </div>
     </section>

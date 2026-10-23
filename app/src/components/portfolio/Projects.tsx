@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Section } from "./Section";
-import { ExternalLink } from "lucide-react";
+import { CheckCircle2, ExternalLink, Sun, Terminal } from "lucide-react";
 
 function GithubIcon({ className }: { className?: string }) {
   return (
@@ -10,11 +10,53 @@ function GithubIcon({ className }: { className?: string }) {
   );
 }
 
-const projects = [
+type Project = {
+  title: string;
+  description: string;
+  tags: string[];
+  gradient: string;
+  initials: string;
+  duration: string;
+  badge: string;
+  liveUrl: string;
+  githubUrl: string | null;
+  domain: boolean;
+};
+
+const solarProjects: Project[] = [
+  {
+    title: "Solar Plant Monitoring Dashboard",
+    description:
+      "Real-time plant health dashboard with PR curve tracking, inverter alerts, generation vs. forecast charts and an O&M ticket system — built from an O&M engineer's perspective, showing the KPIs field teams actually work with.",
+    tags: ["Next.js", "TypeScript", "Recharts", "Node.js", "PostgreSQL"],
+    gradient: "from-emerald-500/30 via-teal-500/20 to-cyan-500/30",
+    initials: "☀",
+    duration: "In Development",
+    badge: "Solar O&M",
+    liveUrl: "https://solar-dashboard.abhishekdehariya.com",
+    githubUrl: "https://github.com/Abhishek-Dehariya/solar-dashboard",
+    domain: true,
+  },
+  {
+    title: "Rooftop Solar ROI Calculator",
+    description:
+      "Interactive calculator for rooftop solar investment. Inputs: roof area, city, DISCOM tariff and system cost. Outputs: payback period, 25-year savings and CO₂ offset — using real DISCOM tariff data for 15 major Indian cities.",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS"],
+    gradient: "from-amber-500/30 via-orange-500/20 to-yellow-500/30",
+    initials: "⚡",
+    duration: "In Development",
+    badge: "Solar Sales Enablement",
+    liveUrl: "https://solar-roi.abhishekdehariya.com",
+    githubUrl: "https://github.com/Abhishek-Dehariya/solar-roi-calculator",
+    domain: true,
+  },
+];
+
+const softwareProjects: Project[] = [
   {
     title: "B2B Real Estate Inventory Platform",
     description:
-      "Production platform for real estate brokerage — broker-builder inventory management, lead tracking, real-time property search across 1000+ listings. Built end-to-end at Terragi PropTech.",
+      "Production platform for real estate brokerage — broker-builder inventory management, lead tracking and real-time property search across 1000+ listings. Built end-to-end at Terragi PropTech.",
     tags: ["Next.js", "TypeScript", "Tailwind", "Redux", "AWS", "PostgreSQL"],
     gradient: "from-blue-500/30 via-indigo-500/20 to-purple-500/30",
     initials: "RE",
@@ -24,129 +66,170 @@ const projects = [
     githubUrl: null,
     domain: false,
   },
-  {
-    title: "Solar Plant Monitoring Dashboard",
-    description:
-      "Real-time plant health dashboard with PR curve tracking, inverter alerts, generation vs. forecast charts, and O&M ticket system. Built from an O&M engineer's perspective — showing KPIs that field engineers use daily.",
-    tags: ["Next.js", "TypeScript", "Recharts", "Node.js", "PostgreSQL"],
-    gradient: "from-emerald-500/30 via-teal-500/20 to-green-500/30",
-    initials: "☀",
-    duration: "In Development",
-    badge: "Solar Domain",
-    liveUrl: "https://solar-dashboard.abhishekdehariya.com",
-    githubUrl: "https://github.com/Abhishek-Dehariya/solar-dashboard",
-    domain: true,
-  },
-  {
-    title: "Rooftop Solar ROI Calculator",
-    description:
-      "Interactive calculator for rooftop solar investment. Inputs: roof area, city, DISCOM tariff, system cost. Outputs: payback period, 25-year savings, CO2 offset. Real DISCOM tariff data for 15 major Indian cities.",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS"],
-    gradient: "from-amber-500/30 via-orange-500/20 to-yellow-500/30",
-    initials: "⚡",
-    duration: "In Development",
-    badge: "Solar Domain",
-    liveUrl: "https://solar-roi.abhishekdehariya.com",
-    githubUrl: "https://github.com/Abhishek-Dehariya/solar-roi-calculator",
-    domain: true,
-  },
+];
+const highlights = [
+  "1,000+ property listings served by real-time search and filtering",
+  "Reusable TypeScript component library that cut delivery time ~30%",
+  "AWS S3 storage with Azure DevOps CI/CD pipelines",
+  "3 major feature releases shipped in 9 months",
 ];
 
+function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const p = project;
+  const accent = p.domain
+    ? "text-emerald-400 light:text-emerald-700 bg-emerald-500/10 border-emerald-500/30"
+    : "text-muted-foreground bg-muted/30 border-border/40";
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      whileHover={{ y: -8 }}
+      className="group glass rounded-3xl overflow-hidden shadow-elegant hover:border-primary/50 transition-all flex flex-col"
+    >
+      <div className={`relative aspect-[4/3] bg-linear-to-br ${p.gradient} overflow-hidden shrink-0`}>
+        <div className="absolute inset-0 grid-pattern opacity-30" />
+        <div className="absolute inset-0 grid place-items-center">
+          <span className="font-display text-7xl font-bold text-white/40 group-hover:scale-110 group-hover:text-white/60 transition-all duration-500">
+            {p.initials}
+          </span>
+        </div>
+        <div className="absolute inset-0 bg-linear-to-t from-card via-transparent to-transparent" />
+      </div>
+      <div className="p-6 flex flex-col flex-1">
+        <div className="flex items-start justify-between gap-2 flex-wrap">
+          <h3 className="font-display text-lg font-semibold group-hover:text-primary transition-colors">
+            {p.title}
+          </h3>
+          <div className="flex flex-col items-end gap-1 shrink-0">
+            <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full border ${accent}`}>
+              {p.duration}
+            </span>
+            <span
+              className={`text-[10px] font-mono px-2 py-0.5 rounded-full border ${
+                p.domain ? accent : "text-muted-foreground bg-muted/30 border-border/40"
+              }`}
+            >
+              {p.badge}
+            </span>
+          </div>
+        </div>
+        <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{p.description}</p>
+        <div className="mt-4 flex flex-wrap gap-1.5">
+          {p.tags.map((t) => (
+            <span
+              key={t}
+              className="text-[11px] px-2 py-0.5 rounded-md bg-primary/10 text-primary border border-primary/20"
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+        <div className="mt-auto pt-5 flex items-center gap-2">
+          {p.liveUrl ? (
+            <a
+              href={p.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-2 rounded-lg gradient-primary text-primary-foreground hover:opacity-90 transition-opacity"
+            >
+              <ExternalLink className="size-3.5" /> Live
+            </a>
+          ) : (
+            <span className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-2 rounded-lg bg-muted/30 text-muted-foreground border border-border/40 cursor-default">
+              <ExternalLink className="size-3.5" /> Coming Soon
+            </span>
+          )}
+          {p.githubUrl ? (
+            <a
+              href={p.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-2 rounded-lg glass hover:bg-foreground/5 transition-colors"
+            >
+              <GithubIcon className="size-3.5" /> Code
+            </a>
+          ) : (
+            <span
+              title="Source code is under NDA"
+              className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-2 rounded-lg bg-muted/30 text-muted-foreground border border-border/40 cursor-not-allowed opacity-60"
+            >
+              <GithubIcon className="size-3.5" /> NDA
+            </span>
+          )}
+        </div>
+      </div>
+    </motion.article>
+  );
+}
 export function Projects() {
   return (
     <Section
       id="projects"
       eyebrow="04 — Projects"
-      title={<>Selected <span className="gradient-text">work</span></>}
-      description="A few projects I've designed, built, and shipped."
+      title={
+        <>
+          Selected <span className="gradient-text">work</span>
+        </>
+      }
+      description="Solar software first — built from the problems I lived on site — then the production product engineering that came alongside it."
     >
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
-        {projects.map((p, i) => (
-          <motion.article
-            key={p.title}
+      {/* Solar first */}
+      <div>
+        <div className="flex flex-wrap items-center gap-3 mb-6">
+          <Sun className="size-4 text-[var(--brand-solar)] shrink-0" />
+          <h3 className="font-display text-xl font-semibold">Solar &amp; Energy Software</h3>
+          <span className="font-mono text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 light:text-emerald-700 border border-emerald-500/25">
+            Domain-led
+          </span>
+        </div>
+        <div className="grid md:grid-cols-2 gap-6 items-stretch">
+          {solarProjects.map((p, i) => (
+            <ProjectCard key={p.title} project={p} index={i} />
+          ))}
+        </div>
+      </div>
+
+      {/* Software second */}
+      <div className="mt-14 sm:mt-16">
+        <div className="flex flex-wrap items-center gap-3 mb-6">
+          <Terminal className="size-4 text-accent shrink-0" />
+          <h3 className="font-display text-xl font-semibold">Software &amp; Product Development</h3>
+          <span className="font-mono text-[10px] px-2 py-0.5 rounded-full bg-accent/10 text-accent border border-accent/25">
+            Engineering
+          </span>
+        </div>
+        <div className="grid md:grid-cols-2 gap-6 items-stretch">
+          {softwareProjects.map((p, i) => (
+            <ProjectCard key={p.title} project={p} index={i} />
+          ))}
+
+          <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.6, delay: i * 0.1 }}
-            whileHover={{ y: -8 }}
-            className="group glass rounded-3xl overflow-hidden shadow-elegant hover:border-primary/50 transition-all flex flex-col"
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="glass rounded-3xl p-6 shadow-elegant flex flex-col"
           >
-            <div className={`relative aspect-[4/3] bg-linear-to-br ${p.gradient} overflow-hidden shrink-0`}>
-              <div className="absolute inset-0 grid-pattern opacity-30" />
-              <div className="absolute inset-0 grid place-items-center">
-                <span className="font-display text-7xl font-bold text-white/40 group-hover:scale-110 group-hover:text-white/60 transition-all duration-500">
-                  {p.initials}
-                </span>
-              </div>
-              <div className="absolute inset-0 bg-linear-to-t from-card via-transparent to-transparent" />
-            </div>
-            <div className="p-6 flex flex-col flex-1">
-              <div className="flex items-start justify-between gap-2 flex-wrap">
-                <h3 className="font-display text-lg font-semibold group-hover:text-primary transition-colors">
-                  {p.title}
-                </h3>
-                <div className="flex flex-col items-end gap-1 shrink-0">
-                  {p.duration && (
-                    <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full border ${p.domain ? "text-emerald-400 light:text-emerald-700 bg-emerald-500/10 border-emerald-500/30" : "text-muted-foreground bg-primary/10 border-primary/20"}`}>
-                      {p.duration}
-                    </span>
-                  )}
-                  {p.badge && (
-                    <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full border ${p.domain ? "text-emerald-400 light:text-emerald-700 bg-emerald-500/10 border-emerald-500/30" : "text-muted-foreground bg-muted/30 border-border/40"}`}>
-                      {p.badge}
-                    </span>
-                  )}
-                </div>
-              </div>
-              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                {p.description}
-              </p>
-              <div className="mt-4 flex flex-wrap gap-1.5">
-                {p.tags.map((t) => (
-                  <span
-                    key={t}
-                    className="text-[11px] px-2 py-0.5 rounded-md bg-primary/10 text-primary border border-primary/20"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-              <div className="mt-auto pt-5 flex items-center gap-2">
-                {p.liveUrl ? (
-                  <a
-                    href={p.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-2 rounded-lg gradient-primary text-primary-foreground hover:opacity-90 transition-opacity"
-                  >
-                    <ExternalLink className="size-3.5" /> Live
-                  </a>
-                ) : (
-                  <span className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-2 rounded-lg bg-muted/30 text-muted-foreground border border-border/40 cursor-default">
-                    <ExternalLink className="size-3.5" /> Coming Soon
-                  </span>
-                )}
-                {p.githubUrl ? (
-                  <a
-                    href={p.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-2 rounded-lg glass hover:bg-foreground/5 transition-colors"
-                  >
-                    <GithubIcon className="size-3.5" /> Code
-                  </a>
-                ) : (
-                  <span
-                    title="Source code is under NDA"
-                    className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-2 rounded-lg bg-muted/30 text-muted-foreground border border-border/40 cursor-not-allowed opacity-60"
-                  >
-                    <GithubIcon className="size-3.5" /> NDA
-                  </span>
-                )}
-              </div>
-            </div>
-          </motion.article>
-        ))}
+            <h4 className="font-display text-lg font-semibold">Engineering highlights</h4>
+            <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+              What those 570+ production days added up to — the same habits I&apos;d bring to an energy
+              product team.
+            </p>
+            <ul className="mt-5 space-y-3">
+              {highlights.map((h) => (
+                <li key={h} className="flex items-start gap-2.5 text-[13px] text-muted-foreground">
+                  <CheckCircle2 className="size-4 text-primary shrink-0 mt-0.5" />
+                  <span className="leading-relaxed">{h}</span>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        </div>
+        <p className="mt-5 text-xs font-mono text-muted-foreground">
+          Shipped in production over 570+ days · TypeScript-first component work · AWS &amp; Azure CI/CD
+        </p>
       </div>
     </Section>
   );
