@@ -1,10 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
 @import "tailwindcss" source(none);
 @source "../src";
+@source "../";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-@custom-variant light (&:is(.light *));
+@custom-variant dark (&:is(.dark, .dark *));
+@custom-variant light (&:is(.light, .light *));
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -42,70 +43,80 @@
 :root {
   --radius: 0.875rem;
 
-  /* Premium dark theme as default */
-  --background: oklch(0.16 0.02 270);
-  --foreground: oklch(0.97 0.01 270);
-  --card: oklch(0.21 0.025 270);
-  --card-foreground: oklch(0.97 0.01 270);
-  --popover: oklch(0.2 0.025 270);
-  --popover-foreground: oklch(0.97 0.01 270);
-  --primary: oklch(0.7 0.18 265);
-  --primary-foreground: oklch(0.15 0.02 270);
-  --secondary: oklch(0.27 0.04 270);
-  --secondary-foreground: oklch(0.97 0.01 270);
-  --muted: oklch(0.25 0.03 270);
-  --muted-foreground: oklch(0.7 0.03 270);
-  --accent: oklch(0.65 0.22 305);
-  --accent-foreground: oklch(0.98 0.01 270);
+  /* Ultra-sleek midnight obsidian aesthetic inspired by reference */
+  --background: oklch(0.09 0.012 250);
+  --foreground: oklch(0.97 0.012 200);
+  --card: oklch(0.13 0.018 250 / 0.7);
+  --card-foreground: oklch(0.97 0.012 200);
+  --popover: oklch(0.12 0.018 250);
+  --popover-foreground: oklch(0.97 0.012 200);
+  --primary: oklch(0.68 0.22 25);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.18 0.025 250);
+  --secondary-foreground: oklch(0.97 0.012 200);
+  --muted: oklch(0.18 0.02 250);
+  --muted-foreground: oklch(0.7 0.025 210);
+  --accent: oklch(0.78 0.13 205);
+  --accent-foreground: oklch(0.17 0.03 230);
   --destructive: oklch(0.65 0.24 25);
-  --destructive-foreground: oklch(0.98 0.01 270);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.7 0.18 265);
+  --destructive-foreground: oklch(0.98 0.01 200);
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 10%);
+  --ring: oklch(0.68 0.22 25);
 
-  --brand-blue: oklch(0.68 0.17 250);
-  --brand-purple: oklch(0.65 0.22 305);
-  --brand-cyan: oklch(0.78 0.14 200);
+  --brand-rose: oklch(0.68 0.22 25);
+  --brand-emerald: oklch(0.74 0.17 158);
+  --brand-cyan: oklch(0.78 0.13 205);
+  --brand-solar: oklch(0.82 0.16 78);
+  --brand-purple: oklch(0.62 0.19 300);
 
-  --gradient-primary: linear-gradient(135deg, oklch(0.68 0.17 250), oklch(0.65 0.22 305));
-  --gradient-hero: radial-gradient(circle at 20% 20%, oklch(0.68 0.17 250 / 0.35), transparent 50%),
-    radial-gradient(circle at 80% 0%, oklch(0.65 0.22 305 / 0.3), transparent 55%),
-    radial-gradient(circle at 50% 100%, oklch(0.78 0.14 200 / 0.22), transparent 60%);
-  --gradient-text: linear-gradient(135deg, oklch(0.95 0.02 250), oklch(0.78 0.18 290));
+  --gradient-primary: linear-gradient(135deg, #f43f5e, #e11d48);
+  --gradient-hero: radial-gradient(circle at 15% 15%, oklch(0.68 0.22 25 / 0.2), transparent 52%),
+    radial-gradient(circle at 85% 5%, oklch(0.82 0.16 78 / 0.15), transparent 58%),
+    radial-gradient(circle at 55% 100%, oklch(0.78 0.13 205 / 0.22), transparent 60%);
+  --gradient-text: linear-gradient(135deg, #ffffff 10%, #f43f5e 90%);
 
-  --shadow-glow: 0 0 60px -10px oklch(0.65 0.22 305 / 0.5);
-  --shadow-elegant: 0 20px 60px -20px oklch(0.05 0.02 270 / 0.7);
-  --glass-bg: oklch(1 0 0 / 0.04);
-  --glass-border: oklch(1 0 0 / 0.1);
+  --shadow-glow: 0 0 50px -8px rgba(244, 63, 94, 0.4);
+  --shadow-elegant: 0 20px 60px -20px rgba(0, 0, 0, 0.85);
+  --glass-bg: rgba(18, 22, 32, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.08);
 }
 
 .light {
-  --background: oklch(0.985 0.005 270);
-  --foreground: oklch(0.18 0.03 270);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.03 270);
+  --background: oklch(0.985 0.005 240);
+  --foreground: oklch(0.18 0.03 250);
+  --card: oklch(1 0 0 / 0.85);
+  --card-foreground: oklch(0.18 0.03 250);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.03 270);
-  --primary: oklch(0.5 0.2 265);
-  --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.94 0.015 270);
-  --secondary-foreground: oklch(0.18 0.03 270);
-  --muted: oklch(0.94 0.015 270);
-  --muted-foreground: oklch(0.38 0.03 270);
-  --accent: oklch(0.5 0.22 305);
+  --popover-foreground: oklch(0.18 0.03 250);
+  --primary: oklch(0.60 0.23 25);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.95 0.015 240);
+  --secondary-foreground: oklch(0.18 0.03 250);
+  --muted: oklch(0.94 0.015 240);
+  --muted-foreground: oklch(0.42 0.025 240);
+  --accent: oklch(0.55 0.14 210);
   --accent-foreground: oklch(0.99 0 0);
-  --border: oklch(0.18 0.03 270 / 14%);
-  --input: oklch(0.18 0.03 270 / 16%);
-  --ring: oklch(0.5 0.2 265);
+  --border: oklch(0.2 0.03 250 / 12%);
+  --input: oklch(0.2 0.03 250 / 14%);
+  --ring: oklch(0.60 0.23 25);
 
-  --gradient-text: linear-gradient(135deg, oklch(0.4 0.2 265), oklch(0.45 0.24 305));
-  --gradient-hero: radial-gradient(circle at 20% 20%, oklch(0.5 0.2 265 / 0.18), transparent 50%),
-    radial-gradient(circle at 80% 0%, oklch(0.5 0.22 305 / 0.16), transparent 55%),
-    radial-gradient(circle at 50% 100%, oklch(0.78 0.14 200 / 0.14), transparent 60%);
-  --shadow-glow: 0 0 60px -10px oklch(0.5 0.22 305 / 0.35);
-  --shadow-elegant: 0 20px 50px -20px oklch(0.18 0.03 270 / 0.18);
-  --glass-bg: oklch(1 0 0 / 0.7);
-  --glass-border: oklch(0.18 0.03 270 / 0.1);
+  --brand-rose: oklch(0.60 0.23 25);
+  --brand-emerald: oklch(0.5 0.13 160);
+  --brand-cyan: oklch(0.52 0.11 220);
+  --brand-solar: oklch(0.72 0.15 75);
+  --brand-purple: oklch(0.5 0.18 300);
+
+  --gradient-primary: linear-gradient(135deg, #f43f5e, #e11d48);
+  --gradient-text: linear-gradient(135deg, oklch(0.18 0.03 250) 10%, #f43f5e 90%);
+  --gradient-hero: radial-gradient(circle at 15% 15%, rgba(244, 63, 94, 0.08), transparent 52%),
+    radial-gradient(circle at 85% 5%, rgba(245, 158, 11, 0.08), transparent 58%),
+    radial-gradient(circle at 55% 100%, rgba(14, 165, 233, 0.08), transparent 60%);
+
+  --shadow-glow: 0 0 40px -8px rgba(244, 63, 94, 0.25);
+  --shadow-elegant: 0 10px 40px -15px rgba(0, 0, 0, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(0, 0, 0, 0.08);
 }
 
 .light .grid-pattern {
@@ -129,8 +140,8 @@
     overflow-x: hidden;
   }
   ::selection {
-    background: var(--brand-purple);
-    color: white;
+    background: var(--brand-emerald);
+    color: oklch(0.16 0.03 160);
   }
 }
 
@@ -189,3 +200,9 @@
   background-size: 200% 100%;
   animation: shimmer 2.5s infinite;
 }
+
+/* Energy flow along the code-drawn plant schematic */
+@keyframes flow {
+  to { stroke-dashoffset: -60; }
+}
+.animate-flow { animation: flow 1.8s linear infinite; }

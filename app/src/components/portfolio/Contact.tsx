@@ -90,9 +90,13 @@ export function Contact() {
   return (
     <Section
       id="contact"
-      eyebrow="05 — Contact"
-      title={<>Let&apos;s <span className="gradient-text">build</span> something</>}
-      description="Have a role, a project, or just want to chat? Drop me a message — I usually reply within a day."
+      eyebrow="07 — Contact"
+      title={
+        <>
+          Let&apos;s talk <span className="gradient-text">solar — or software</span>
+        </>
+      }
+      description="Hiring for solar O&M, asset management or energy-tech? Or need software built around how energy teams actually work? Drop me a message — I usually reply within a day."
     >
       <div className="grid lg:grid-cols-5 gap-6">
         {/* Left card */}
@@ -106,8 +110,8 @@ export function Contact() {
           <div>
             <h3 className="font-display text-2xl font-semibold">Reach out</h3>
             <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-              Open to frontend roles, freelance opportunities, and interesting
-              collaborations.
+              Open to solar O&amp;M and asset management roles, energy-tech product work,
+              and freelance energy software projects.
             </p>
             <button
               onClick={handleMailClick}
@@ -135,7 +139,7 @@ export function Contact() {
               </div>
               <div className="flex items-center gap-3 text-sm text-muted-foreground">
                 <span className="size-8 grid place-items-center rounded-lg bg-primary/10 border border-primary/20 shrink-0 text-base">☀</span>
-                <span>Open to ClimateTech &amp; SolarTech roles</span>
+                <span>Open to Solar O&amp;M, Asset Management &amp; Energy-Tech roles</span>
               </div>
             </div>
           </div>
