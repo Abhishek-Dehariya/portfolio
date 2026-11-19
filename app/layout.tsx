@@ -1,13 +1,14 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import './src/styles.css'
 
 const BASE_URL = 'https://abhishekdehariya.com'
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
-  title: 'Abhishek Dehariya | Solar O&M & Asset Management + Energy Software',
+  title: 'Abhishek Dehariya | Solar Asset Management & Energy Software',
   description:
-    'Solar O&M and asset management engineer with 8+ years managing 59 MW of ground-mount and rooftop solar assets across MP, Rajasthan and Gujarat. Also builds energy software with React.js, Next.js and TypeScript. Based in Gurugram.',
+    'Solar O&M and asset management engineer with 8+ years managing 59 MW across Madhya Pradesh, Rajasthan and Gujarat, building energy software with Next.js and TypeScript. Based in Gurugram, India.',
   keywords: [
     'Abhishek Dehariya',
     'abhishek dehariya',
@@ -36,18 +37,18 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: BASE_URL,
-    title: 'Abhishek Dehariya | Solar O&M & Asset Management + Energy Software',
+    title: 'Abhishek Dehariya | 59 MW Solar + Next.js & TypeScript',
     description:
-      '8+ years managing 59 MW of solar assets — plant O&M, asset management, SCADA performance analysis and client MIS. Also builds energy software with React.js & Next.js.',
+      'Solar O&M and asset management across 59 MW in MP, Rajasthan and Gujarat. Building energy software with Next.js and TypeScript.',
     siteName: 'Abhishek Dehariya Portfolio',
-    images: [{ url: '/abhishek.png', width: 800, height: 800, alt: 'Abhishek Dehariya' }],
+    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Abhishek Dehariya — 59 MW solar asset management and energy software' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Abhishek Dehariya | Solar O&M & Asset Management + Energy Software',
+    title: 'Abhishek Dehariya | 59 MW Solar + Next.js & TypeScript',
     description:
-      '8+ years managing 59 MW of solar assets — plant O&M, asset management and performance analysis. Also builds energy software with React.js & Next.js.',
-    images: ['/abhishek.png'],
+      'Solar O&M and asset management across 59 MW in MP, Rajasthan and Gujarat. Building energy software with Next.js and TypeScript.',
+    images: ['/opengraph-image'],
   },
   alternates: {
     canonical: BASE_URL,
@@ -79,13 +80,22 @@ const jsonLd = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
+      <body>
         <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
+          }}
+        />
+        <Script
+          id="theme-initializer"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `(function(){
               try {
                 var saved = localStorage.getItem('theme');
-                var isLight = saved === 'light' || (!saved && window.matchMedia('(prefers-color-scheme: light)').matches);
+                // By default night mode (dark) is open unless user explicitly chose 'light'
+                var isLight = saved === 'light';
                 if (isLight) {
                   document.documentElement.classList.add('light');
                   document.documentElement.classList.remove('dark');
@@ -97,12 +107,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             })()`,
           }}
         />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-      </head>
-      <body>{children}</body>
+        {children}
+      </body>
     </html>
   )
 }

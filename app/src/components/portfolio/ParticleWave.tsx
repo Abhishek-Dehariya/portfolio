@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 interface ParticleWaveProps {
   className?: string;
@@ -14,7 +14,6 @@ const PARTICLE_TEXTURE_BASE64 =
 export function ParticleWave({ className = "", themeColor = "reference" }: ParticleWaveProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -186,7 +185,8 @@ export function ParticleWave({ className = "", themeColor = "reference" }: Parti
         const proj = setProjection(aspect);
         gl.uniformMatrix4fv(uProjLoc, false, new Float32Array(proj));
 
-        const baseSize = 2.5;
+        const isLight = document.documentElement.classList.contains("light");
+        const baseSize = isLight ? 3.4 : 2.5;
         gl.uniform1f(uSizeLoc, (h / 400) * baseSize * dpr);
 
         const fieldW = (w / h) * 400;
@@ -196,7 +196,6 @@ export function ParticleWave({ className = "", themeColor = "reference" }: Parti
 
         gl.uniform3f(uFieldLoc, fieldW, amplitude, fieldH);
 
-        const isLight = document.documentElement.classList.contains("light");
         if (isLight) {
           gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
         } else {
@@ -216,18 +215,21 @@ export function ParticleWave({ className = "", themeColor = "reference" }: Parti
 
             if (isLight) {
               if (themeColor === "solar") {
-                colors.push(0.85 * nx + 0.1, 0.45 * (1 - nx) + 0.05, 0.05, 0.35 + nz * 0.55);
+                // High-contrast solar amber-crimson on light mode
+                colors.push(0.9 * nx + 0.15, 0.4 * (1 - nx) + 0.05, 0.05, 0.65 + nz * 0.35);
               } else if (themeColor === "cyber") {
-                colors.push(0.02, 0.55 * (1 - nx) + 0.1, 0.6, 0.35 + nz * 0.55);
+                // High-contrast emerald-cyan on light mode
+                colors.push(0.02, 0.6 * (1 - nx) + 0.05, 0.55, 0.65 + nz * 0.35);
               } else {
-                const r = Math.pow(nx, 2) * 0.85;
-                const g = 0.5 * (1 - nx) + 0.1;
-                const b = 0.8;
-                const a = 0.35 + nz * 0.55;
+                // High-contrast sapphire to rose gradient for light mode
+                const r = Math.pow(nx, 2) * 0.85 + 0.12;
+                const g = 0.25 * (1 - nx) + 0.05;
+                const b = 0.75;
+                const a = 0.65 + nz * 0.35;
                 colors.push(r, g, b, a);
               }
             } else {
-              // Exact reference dark mode color schemes
+              // Exact reference dark mode color schemes — 100% UNCHANGED
               if (themeColor === "solar") {
                 // Solar Amber: Deep gold to cyan depth
                 colors.push(0.95 * nx + 0.1, 0.65 * (1 - nx) + 0.2, 0.2 * nz, 0.4 + nz * 0.6);
@@ -257,8 +259,6 @@ export function ParticleWave({ className = "", themeColor = "reference" }: Parti
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
         gl.enableVertexAttribArray(aColLoc);
         gl.vertexAttribPointer(aColLoc, 4, gl.FLOAT, false, 0, 0);
-
-        setIsReady(true);
       }
 
       resize();
@@ -363,11 +363,11 @@ export function ParticleWave({ className = "", themeColor = "reference" }: Parti
 
             if (isLight) {
               if (themeColor === "solar") {
-                ctx.fillStyle = `rgba(180, 83, 9, ${0.25 + depth * 0.7})`;
+                ctx.fillStyle = `rgba(180, 83, 9, ${0.45 + depth * 0.55})`;
               } else if (themeColor === "cyber") {
-                ctx.fillStyle = `rgba(5, 150, 105, ${0.25 + depth * 0.7})`;
+                ctx.fillStyle = `rgba(5, 150, 105, ${0.45 + depth * 0.55})`;
               } else {
-                ctx.fillStyle = `rgba(2, 132, 199, ${0.25 + depth * 0.75})`;
+                ctx.fillStyle = `rgba(37, 99, 235, ${0.45 + depth * 0.55})`;
               }
             } else {
               if (themeColor === "solar") {

@@ -35,9 +35,14 @@ function WhatsAppIcon({ className }: { className?: string }) {
 }
 
 function copyToClipboard(text: string, label: string) {
-  navigator.clipboard.writeText(text).then(() => {
-    toast.success(`${label} copied!`, { duration: 2000 });
-  });
+  if (!navigator.clipboard?.writeText) {
+    toast.error("Clipboard access is unavailable. Select and copy the address instead.");
+    return;
+  }
+  navigator.clipboard.writeText(text).then(
+    () => toast.success(`${label} copied!`, { duration: 2000 }),
+    () => toast.error("Could not copy. Select and copy the address instead.")
+  );
 }
 
 function isMobileDevice() {
@@ -82,7 +87,7 @@ export function Contact() {
       setSending(false);
       setSent(true);
       formRef.current?.reset();
-      toast.success("Message sent via your email client!");
+      toast.success("Your email draft is ready to send.");
       setTimeout(() => setSent(false), 4000);
     }, 800);
   };
@@ -113,13 +118,22 @@ export function Contact() {
               Open to solar O&amp;M and asset management roles, energy-tech product work,
               and freelance energy software projects.
             </p>
-            <button
-              onClick={handleMailClick}
-              className="mt-6 inline-block font-mono text-sm gradient-text font-medium hover:opacity-80 transition-opacity cursor-pointer"
-              title="Click to copy email"
-            >
-              {EMAIL}
-            </button>
+            <div className="mt-6 flex flex-wrap items-center gap-2">
+              <a
+                href={`mailto:${EMAIL}`}
+                className="inline-flex items-center gap-2 rounded-xl border border-border bg-card/60 px-3 py-2 font-mono text-sm font-medium text-foreground underline decoration-primary/70 underline-offset-4 hover:border-primary/50"
+              >
+                <Mail className="size-4 text-primary" />{EMAIL}
+              </a>
+              <button
+                onClick={handleMailClick}
+                className="rounded-xl border border-border px-3 py-2 text-xs font-semibold text-muted-foreground hover:text-foreground hover:border-primary/50 transition-colors"
+                title="Copy email address"
+              >
+                Copy email
+              </button>
+            </div>
+            <p className="mt-2 text-xs text-muted-foreground">Use the email link to open your mail app, or copy the address if it doesn&apos;t open.</p>
 
             <div className="mt-6 flex items-center gap-2.5 px-3 py-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 w-fit">
               <span className="size-2 rounded-full bg-emerald-400 light:bg-emerald-600 animate-pulse shrink-0" />
@@ -239,11 +253,11 @@ export function Contact() {
             disabled={sending || sent}
             className="group inline-flex items-center gap-2 gradient-primary text-primary-foreground px-6 py-3 rounded-xl font-medium shadow-glow hover:scale-[1.02] transition-transform disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
           >
-            {sent ? "Sent ✓" : sending ? "Opening..." : "Send Message"}
+            {sent ? "Draft ready ✓" : sending ? "Opening..." : "Send Message"}
             <Send className="size-4 group-hover:translate-x-1 transition-transform" />
           </button>
           <p className="text-xs text-muted-foreground">
-            This will open your email client with the message pre-filled.
+            This opens a pre-filled email draft. If your mail app doesn&apos;t open, email <a className="font-medium text-foreground underline underline-offset-2" href={`mailto:${EMAIL}`}>{EMAIL}</a> directly.
           </p>
         </motion.form>
       </div>
