@@ -6,10 +6,12 @@ import { Hero } from '@/components/portfolio/Hero'
 import { About } from '@/components/portfolio/About'
 import { SolarExperience } from '@/components/portfolio/SolarExperience'
 import { SolarCapabilities } from '@/components/portfolio/SolarCapabilities'
+import { SoftwareEngineering } from '@/components/portfolio/SoftwareEngineering'
+import { TechnicalSkills } from '@/components/portfolio/TechnicalSkills'
 import { Projects } from '@/components/portfolio/Projects'
 import { WhyEnergySoftware } from '@/components/portfolio/WhyEnergySoftware'
-import { SoftwareEngineering } from '@/components/portfolio/SoftwareEngineering'
 import { Contact } from '@/components/portfolio/Contact'
+import { Endorsements } from '@/components/portfolio/Endorsements'
 import { Footer } from '@/components/portfolio/Footer'
 import { CustomCursor } from '@/components/portfolio/CustomCursor'
 
@@ -23,9 +25,11 @@ export default function Page() {
         <About />
         <SolarExperience />
         <SolarCapabilities />
+        <SoftwareEngineering />
+        <TechnicalSkills />
         <Projects />
         <WhyEnergySoftware />
-        <SoftwareEngineering />
+        <Endorsements />
         <Contact />
       </main>
       <Footer />

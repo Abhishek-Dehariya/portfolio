@@ -13,83 +13,83 @@ import {
 const capabilities = [
   {
     icon: Wrench,
-    title: "Plant O&M & Preventive Maintenance",
+    title: "Utility & C&I Solar Plant O&M",
     description:
-      "Scheduled maintenance that keeps plants generating — inverters, SCBs, modules and mounting structures.",
+      "Hands-on operations and maintenance keeping plants at peak generation across ground-mount and rooftop arrays.",
     points: [
-      "PM schedules and site inspection routines",
-      "Corrective maintenance and fault escalation",
-      "Module cleaning cycles and spares planning",
+      "Preventive & corrective maintenance routines",
+      "Module cleaning schedules & soilage mitigation",
+      "Spare parts inventory & vendor SLA coordination",
     ],
   },
   {
     icon: Building2,
     title: "Solar Asset Management",
     description:
-      "Owner-side responsibility for availability and generation across a multi-site portfolio — not just site visits.",
+      "Owner-side accountability for uptime, contractual availability, and multi-site portfolio performance.",
     points: [
-      "59 MW portfolio across MP, Rajasthan, Gujarat",
-      "Uptime, downtime and MTTR ownership",
-      "Vendor, OEM and spares coordination",
+      "59 MW portfolio across MP, Rajasthan & Gujarat",
+      "Uptime, MTTR & plant availability ownership (98%+)",
+      "O&M contracts, AMC proposals & budget planning",
     ],
   },
   {
     icon: LineChart,
-    title: "Performance Monitoring & Analysis",
+    title: "Generation Analysis & PR Tracking",
     description:
-      "Reading SCADA data as a story: where generation is being lost, and what is causing it.",
+      "Data-driven SCADA telemetry review identifying generation loss drivers and degradation trends.",
     points: [
-      "PR curve and CUF trend analysis",
-      "Generation vs. forecast deviation checks",
-      "String-level underperformance detection",
+      "Daily PR curve & CUF variance analysis",
+      "Generation vs. forecast/PVSyst comparisons",
+      "String-level underperformance & clipping detection",
     ],
   },
   {
     icon: Cpu,
-    title: "Inverter & Equipment Diagnostics",
+    title: "Inverter & Electrical Troubleshooting",
     description:
-      "First-line diagnosis from fault logs to root cause, before a service team is sent to site.",
+      "Diagnostic engineering identifying root causes before deploying site technicians or OEM service teams.",
     points: [
-      "Alarm and fault-log interpretation",
-      "MPPT, string current and grid-side checks",
-      "Root-cause notes for OEM service visits",
+      "Central & string inverter fault-log diagnosis",
+      "MPPT behaviour, DC insulation & fuse failures",
+      "String combiner box (SCB) current imbalance checks",
     ],
   },
   {
     icon: FileSpreadsheet,
-    title: "Client MIS & Reporting",
+    title: "Client MIS & Technical Reporting",
     description:
-      "Performance reporting that clients actually use in monthly review meetings.",
+      "Executive reporting delivering transparency and contractual compliance for enterprise stakeholders.",
     points: [
-      "Monthly generation and downtime MIS",
-      "15+ enterprise client accounts",
-      "Tariff and generation reconciliation support",
+      "Monthly generation & downtime MIS dashboards",
+      "15+ enterprise client portfolio accounts",
+      "JMR, tariff reconciliation & billing support",
     ],
   },
   {
     icon: HardHat,
-    title: "Site Coordination & Compliance",
+    title: "Site Inspections & Grid Compliance",
     description:
-      "Keeping the interface between the plant, the utility and OEM teams clean and documented.",
+      "Ensuring plant operations adhere to safety standards, DISCOM requirements, and statutory regulations.",
     points: [
-      "Site inspections, permits and safety routines",
-      "DISCOM / utility metering coordination",
-      "EPC and OEM escalation during breakdowns",
+      "Comprehensive plant safety & electrical audits",
+      "DISCOM / utility net-metering synchronization",
+      "Protection, earthing & lightning audit compliance",
     ],
   },
 ];
+
 export function SolarCapabilities() {
   return (
     <Section
       id="capabilities"
-      eyebrow="03 — Capabilities"
+      eyebrow="02 — Plant Capabilities"
       title={
         <>
-          What I do on a{" "}
-          <span className="gradient-text">solar asset</span>
+          Field-Tested <span className="bg-gradient-to-r from-amber-400 to-rose-500 bg-clip-text text-transparent">Solar Competencies</span>
         </>
       }
-      description="The work I've been accountable for across 59 MW of ground-mount and rooftop plants — from the 6 AM SCADA check to the monthly client review."
+      description="Proven operational expertise across 59 MW of utility-scale ground-mount and commercial rooftop plants — from 6 AM SCADA telemetry checks to monthly client executive reviews."
     >
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 items-stretch">
         {capabilities.map((c, i) => (
@@ -100,22 +100,22 @@ export function SolarCapabilities() {
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.55, delay: i * 0.07 }}
             whileHover={{ y: -5 }}
-            className="glass rounded-3xl p-6 shadow-elegant hover:border-primary/40 transition-colors flex flex-col h-full"
+            className="glass rounded-3xl p-6 shadow-elegant hover:border-amber-500/40 border border-border/80 transition-all flex flex-col h-full"
           >
-            <div className="flex items-center gap-3">
-              <div className="size-10 rounded-xl bg-primary/10 border border-primary/20 grid place-items-center shrink-0">
-                <c.icon className="size-5 text-primary" />
+            <div className="flex items-center justify-between gap-3">
+              <div className="size-10 rounded-xl bg-amber-500/10 border border-amber-500/20 grid place-items-center shrink-0">
+                <c.icon className="size-5 text-amber-500 dark:text-amber-400" />
               </div>
-              <span className="font-mono text-[10px] text-muted-foreground">
-                {String(i + 1).padStart(2, "0")}
+              <span className="font-mono text-xs text-muted-foreground/60">
+                0{i + 1}
               </span>
             </div>
-            <h3 className="font-display text-lg font-semibold mt-4 leading-snug">{c.title}</h3>
-            <p className="mt-2.5 text-sm text-muted-foreground leading-relaxed">{c.description}</p>
-            <ul className="mt-auto space-y-2 pt-4">
+            <h3 className="font-display text-lg font-bold mt-4 leading-snug">{c.title}</h3>
+            <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{c.description}</p>
+            <ul className="mt-auto space-y-2 pt-4 border-t border-border/40 mt-4">
               {c.points.map((p) => (
                 <li key={p} className="flex items-start gap-2 text-[13px] text-muted-foreground">
-                  <span className="mt-1.5 size-1.5 rounded-full bg-accent shrink-0" />
+                  <span className="mt-1.5 size-1.5 rounded-full bg-amber-500/80 shrink-0" />
                   <span className="leading-relaxed">{p}</span>
                 </li>
               ))}

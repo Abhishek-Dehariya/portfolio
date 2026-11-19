@@ -1,10 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { motion, useSpring } from "framer-motion";
 
+function subscribe() {
+  return () => {};
+}
+
 export function CustomCursor() {
-  const [mounted, setMounted] = useState(false);
+  const isClient = useSyncExternalStore(subscribe, () => true, () => false);
   const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -22,7 +26,6 @@ export function CustomCursor() {
     ) {
       return;
     }
-    setMounted(true);
 
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX);
@@ -55,7 +58,7 @@ export function CustomCursor() {
     };
   }, [cursorX, cursorY, dotX, dotY, isVisible]);
 
-  if (!mounted || !isVisible) return null;
+  if (!isClient || !isVisible) return null;
 
   return (
     <div className="pointer-events-none fixed inset-0 z-9999 select-none overflow-hidden">

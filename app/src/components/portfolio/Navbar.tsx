@@ -7,10 +7,11 @@ import { Moon, Sun, Menu, X, Sparkles } from "lucide-react";
 const navItems = [
   { href: "#home", label: "Home" },
   { href: "#about", label: "About" },
-  { href: "#solar-experience", label: "Solar 59MW" },
+  { href: "#solar", label: "Solar 59MW" },
   { href: "#capabilities", label: "Capabilities" },
-  { href: "#projects", label: "Portfolio" },
   { href: "#software", label: "Software" },
+  { href: "#skills", label: "Skills" },
+  { href: "#portfolio", label: "Projects" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -18,43 +19,15 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-  const [light, setLight] = useState(false);
+
+  // Default to night mode (dark) unless user explicitly saved 'light'
+  const [light, setLight] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return localStorage.getItem("theme") === "light";
+  });
+
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
-
-  // Sync theme with document class and localStorage on mount
-  useEffect(() => {
-    const saved = localStorage.getItem("theme");
-    const isSystemLight = window.matchMedia("(prefers-color-scheme: light)").matches;
-    const activeIsLight = saved ? saved === "light" : isSystemLight;
-
-    if (activeIsLight) {
-      document.documentElement.classList.add("light");
-      document.documentElement.classList.remove("dark");
-      setLight(true);
-    } else {
-      document.documentElement.classList.add("dark");
-      document.documentElement.classList.remove("light");
-      setLight(false);
-    }
-
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: light)");
-    const handleChange = (e: MediaQueryListEvent) => {
-      if (!localStorage.getItem("theme")) {
-        if (e.matches) {
-          document.documentElement.classList.add("light");
-          document.documentElement.classList.remove("dark");
-          setLight(true);
-        } else {
-          document.documentElement.classList.add("dark");
-          document.documentElement.classList.remove("light");
-          setLight(false);
-        }
-      }
-    };
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
-  }, []);
 
   // Scroll spy & scrolled header effect
   useEffect(() => {
